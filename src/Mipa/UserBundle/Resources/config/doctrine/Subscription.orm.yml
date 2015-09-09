@@ -9,8 +9,8 @@ Mipa\UserBundle\Entity\Subscription:
         type:
             type: string
             length: 225
-            unique:true
+            unique: true
     oneToMany:
         users:
             targetEntity: User
-            mappedBY: subscription
+            mappedBy: subscription

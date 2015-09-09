@@ -9,20 +9,19 @@ Mipa\UserBundle\Entity\User:
         name:
             type: string
             length: 225
-            unique:true
         gender:
             type: string
             length: 225
-            unique:true
         address:
             type: string
             length: 225
-            unique:true
         email:
             type: string
             length: 225
-            unique:true
     ManyToOne:
         subscription:
             targetEntity: Subscription
-            mappedBY: users
+            inversedBy: users
+            joinColumn:
+                name: subscription_id
+                referencedColumnName: id
