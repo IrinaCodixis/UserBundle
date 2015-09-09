@@ -1,0 +1,16 @@
+Mipa\UserBundle\Entity\Subscription:
+    type: entity
+    table: subscription
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        type:
+            type: string
+            length: 225
+            unique:true
+    oneToMany:
+        users:
+            targetEntity: User
+            mappedBY: subscription
