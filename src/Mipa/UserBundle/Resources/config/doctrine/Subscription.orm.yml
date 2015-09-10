@@ -11,6 +11,6 @@ Mipa\UserBundle\Entity\Subscription:
             length: 225
             unique: true
     oneToMany:
-        users:
+        user:
             targetEntity: User
             mappedBy: subscription

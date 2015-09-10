@@ -21,7 +21,7 @@ Mipa\UserBundle\Entity\User:
     manyToOne:
         subscription:
             targetEntity: Subscription
-            inversedBy: users
+            inversedBy: user
             joinColumn:
                 name: subscription_id
                 referencedColumnName: id
