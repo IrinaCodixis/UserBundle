@@ -11,16 +11,16 @@ class LoadSubscriptionData extends AbstractFixture implements OrderedFixtureInte
   public function load(ObjectManager $em)
   {
     $one_month = new Subscription();
-    $one_month->setName('One Month');
+    $one_month->setType('One Month');
  
     $six_months = new Subscription();
-    $six_months->setName('Six Month');
+    $six_months->setType('Six Month');
  
     $one_year = new Subscription();
-    $one_year->setName('Ome Year');
+    $one_year->setType('Ome Year');
  
     $premium = new Subscription();
-    $premium->setName('Premium');
+    $premium->setType('Premium');
  
     $em->persist($one_month);
     $em->persist($six_months);
