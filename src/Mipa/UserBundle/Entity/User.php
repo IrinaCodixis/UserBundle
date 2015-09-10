@@ -138,4 +138,33 @@ class User
     {
         return $this->email;
     }
+    /**
+     * @var \Mipa\UserBundle\Entity\Subscription
+     */
+    private $subscription;
+
+
+    /**
+     * Set subscription
+     *
+     * @param \Mipa\UserBundle\Entity\Subscription $subscription
+     *
+     * @return User
+     */
+    public function setSubscription(\Mipa\UserBundle\Entity\Subscription $subscription = null)
+    {
+        $this->subscription = $subscription;
+
+        return $this;
+    }
+
+    /**
+     * Get subscription
+     *
+     * @return \Mipa\UserBundle\Entity\Subscription
+     */
+    public function getSubscription()
+    {
+        return $this->subscription;
+    }
 }

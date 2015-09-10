@@ -98,4 +98,3 @@ class Subscription
         return $this->users;
     }
 }
-
