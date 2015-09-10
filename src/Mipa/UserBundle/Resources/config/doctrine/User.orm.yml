@@ -18,7 +18,7 @@ Mipa\UserBundle\Entity\User:
         email:
             type: string
             length: 225
-    ManyToOne:
+    manyToOne:
         subscription:
             targetEntity: Subscription
             inversedBy: users
