@@ -4,7 +4,7 @@ namespace Mipa\UserBundle\DataFixtures\ORM;
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Mipa\UsertBundle\Entity\Subscription;
+use Mipa\UserBundle\Entity\Subscription;
  
 class LoadSubscriptionData extends AbstractFixture implements OrderedFixtureInterface
 {
