@@ -17,7 +17,7 @@ class LoadSubscriptionData extends AbstractFixture implements OrderedFixtureInte
     $six_months->setType('Six Month');
  
     $one_year = new Subscription();
-    $one_year->setType('Ome Year');
+    $one_year->setType('One Year');
  
     $premium = new Subscription();
     $premium->setType('Premium');

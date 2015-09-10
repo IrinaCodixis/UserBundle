@@ -1,6 +1,6 @@
 mipa_user_mipa_user:
     resource: "@MipaUserBundle/Resources/config/routing/user.yml"
-    prefix:   /mipa_user
+    prefix:   /user
 
 mipa_user_mipa_sub:
     resource: "@MipaUserBundle/Resources/config/routing/subscription.yml"
