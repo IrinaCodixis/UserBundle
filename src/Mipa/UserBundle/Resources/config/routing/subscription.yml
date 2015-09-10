@@ -1,0 +1,30 @@
+mipa_sub:
+    path:     /
+    defaults: { _controller: "MipaUserBundle:Subscription:index" }
+
+mipa_sub_show:
+    path:     /{id}/show
+    defaults: { _controller: "MipaUserBundle:Subscription:show" }
+
+mipa_sub_new:
+    path:     /new
+    defaults: { _controller: "MipaUserBundle:Subscription:new" }
+
+mipa_sub_create:
+    path:     /create
+    defaults: { _controller: "MipaUserBundle:Subscription:create" }
+    methods:  POST
+
+mipa_sub_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MipaUserBundle:Subscription:edit" }
+
+mipa_sub_update:
+    path:     /{id}/update
+    defaults: { _controller: "MipaUserBundle:Subscription:update" }
+    methods:  [POST, PUT]
+
+mipa_sub_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MipaUserBundle:Subscription:delete" }
+    methods:  [POST, DELETE]

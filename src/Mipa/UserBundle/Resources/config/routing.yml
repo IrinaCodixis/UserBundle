@@ -1,3 +1,7 @@
+mipa_user_mipa_sub:
+    resource: "@MipaUserBundle/Resources/config/routing/subscription.yml"
+    prefix:   /mipa_sub
+
 mipa_user_homepage:
     path:     /hello/{name}
     defaults: { _controller: MipaUserBundle:Default:index }
