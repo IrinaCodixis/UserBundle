@@ -18,9 +18,29 @@
     {% endblock %}
    </head>
   <body>
-    <div class="content">
+  <nav class="navbar navbar-inverse">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{ path('mipa_user') }}">Guest List</a>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{{ path('mipa_user_new') }}">Add new guest</a></li>
+              <li><a href="http://irina-dev.codixis.net/app_dev.php/subscription/">Add new type of subscription</a></li>
+              <li><a href="#contact">Contact</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+
             {% block content %}
             {% endblock %}
-    </div>
+   
   </body>
 </html>
