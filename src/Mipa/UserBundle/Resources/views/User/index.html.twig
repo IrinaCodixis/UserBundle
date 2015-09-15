@@ -10,7 +10,7 @@
         <thead>
             <tr>
                 <th>{{ pagination|sortable('Id', 'a.id') }}</th>
-                <th>{% pagination|sortable('Name', 'a.name') }}</th>
+                <th>{{ pagination|sortable('Name', 'a.name') }}</th>
                 <th>{{ pagination|sortable( 'Gender', 'a.gender') }}</th>
                 <th>{{ pagination|sortable(pagination, 'Address', 'a.address') }}</th>
                 <th>{{ pagination|sortable(pagination, 'Email', 'a.email') }}</th>
