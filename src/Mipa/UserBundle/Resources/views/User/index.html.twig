@@ -20,20 +20,20 @@
             </tr>
         </thead>
         <tbody>
-        {% for entity in pagination %}
+        {% for users in pagination %}
             <tr>
-                <td><a href="{{ path('mipa_user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.name }}</td>
-                <td>{{ entity.gender }}</td>
-                <td>{{ entity.address }}</td>
-                <td>{{ entity.email }}</td>
+                <td><a href="{{ path('mipa_user_show', { 'id': users.id }) }}">{{ users.id }}</a></td>
+                <td>{{ users.name }}</td>
+                <td>{{ users.gender }}</td>
+                <td>{{ users.address }}</td>
+                <td>{{ users.email }}</td>
                 <td>
                 <ul>
                     <li>
-                        <a href="{{ path('mipa_user_show', { 'id': entity.id }) }}">show</a>
+                        <a href="{{ path('mipa_user_show', { 'id': users.id }) }}">show</a>
                     </li>
                     <li>
-                        <a href="{{ path('mipa_user_edit', { 'id': entity.id }) }}">edit</a>
+                        <a href="{{ path('mipa_user_edit', { 'id': users.id }) }}">edit</a>
                     </li>
                 </ul>
                 </td>
