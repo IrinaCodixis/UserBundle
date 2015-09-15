@@ -4,18 +4,16 @@
 {% block content %}
     <h1>User list</h1>
 
-	<div class="count">
-		{{ entity.getTotalItemCount }}
-	</div>
+	
 	
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
-                <th>{% if pagination.isSorted('a.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Gender', 'a.gender') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Address', 'a.address') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Email', 'a.email') }}</th>
+                <th>{{ pagination|sortable('Id', 'a.id') }}</th>
+                <th>{% pagination|sortable('Name', 'a.name') }}</th>
+                <th>{{ pagination|sortable( 'Gender', 'a.gender') }}</th>
+                <th>{{ pagination|sortable(pagination, 'Address', 'a.address') }}</th>
+                <th>{{ pagination|sortable(pagination, 'Email', 'a.email') }}</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -43,7 +41,7 @@
     </table>
 	
 	<div class="navigation">
-		{{ knp_pagination_render(pagination) }}
+		{{ pagination|paginate }}
 	</div>
 
     {% endblock %}
