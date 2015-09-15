@@ -25,9 +25,23 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
     $user_two->setAddress('33, Krone str.');
     $user_two->setEmail('user2@mail.com');
  
+	  
+	  
     $em->persist($user_one);
     $em->persist($user_two);
- 
+	
+	for($i = 100; $i <= 130; $i++)
+	  {
+		$user_n = new User();
+		$user_n->setSubscription($em->merge($this->getReference('subscription-six_months')));
+		$user_n->setName('new user');
+		$user_n->setGender('Female');
+		$user_n->setAddress('33, Krone str.');
+		$user_n->setEmail('userN@mail.com');
+		
+		$em->persist($user_n);
+	  }
+	
     $em->flush();
   }
  
