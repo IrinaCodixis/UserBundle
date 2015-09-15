@@ -40,8 +40,9 @@ class UserController extends Controller
 		$pagination = $paginator->paginate(
 			$query,
 			$request->query->getInt('page', 1)/*page number*/,
-			10/*limit per page*/
+			10 /*limit per page*/
 		);
+		$pagination->setTemplate('MipaUserBundle:User:index.html.twig');
 
 		// parameters to template
 		return $this->render('MipaUserBundle:User:index.html.twig', array('pagination' => $pagination));
