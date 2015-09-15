@@ -4,19 +4,23 @@
 {% block content %}
     <h1>User list</h1>
 
+	<div class="count">
+		{{ pagination.getTotalItemCount }}
+	</div>
+	
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Gender</th>
-                <th>Address</th>
-                <th>Email</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'a.id') }}</th>
+                <th>{% if pagination.isSorted('a.Name') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Name', 'a.name') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Gender', 'a.gender') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Address', 'a.address') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Email', 'a.email') }}</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for entity in entities %}
+        {% for entity in pagination %}
             <tr>
                 <td><a href="{{ path('mipa_user_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
                 <td>{{ entity.name }}</td>
@@ -37,5 +41,9 @@
         {% endfor %}
         </tbody>
     </table>
+	
+	<div class="navigation">
+		{{ knp_pagination_render(pagination) }}
+	</div>
 
     {% endblock %}
