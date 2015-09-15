@@ -42,8 +42,7 @@ class UserController extends Controller
 			$request->query->getInt('page', 1)/*page number*/,
 			10 /*limit per page*/
 		);
-		$pagination->setTemplate('MyBundle:Pagination:pagination.html.twig');
-		$pagination->setSortableTemplate('MyBundle:Pagination:sortable.html.twig');
+		
 
 		// parameters to template
 		return $this->render('MipaUserBundle:User:index.html.twig', array('pagination' => $pagination));
