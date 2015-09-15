@@ -19,10 +19,21 @@ class UserController extends Controller
      * Lists all User entities.
      *
      */
-    public function indexAction(Request $request)
+    public function indexAction()
     {
-        $em    = $this->get('doctrine.orm.entity_manager');
-		$dql   = "SELECT a FROM MipaUserBundle:User a";
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('MipaUserBundle:User')->findAll();
+
+        return $this->render('MipaUserBundle:User:index.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+	
+	public function listAction(Request $request)
+	{
+		$em = $this->getDoctrine()->getManager();
+		$dql   = "SELECT a FROM MipaUserBundle:Users a";
 		$query = $em->createQuery($dql);
 
 		$paginator  = $this->get('knp_paginator');
@@ -35,8 +46,8 @@ class UserController extends Controller
 
 		// parameters to template
 		return $this->render('MipaUserBundle:User:index.html.twig', array('pagination' => $pagination));
-    }
-	
+	}
+
     /**
      * Creates a new User entity.
      *
