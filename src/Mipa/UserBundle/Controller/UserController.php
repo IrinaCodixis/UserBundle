@@ -19,7 +19,7 @@ class UserController extends Controller
      * Lists all User entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
    {
 		$em = $this->getDoctrine()->getManager();
 		$dql   = "SELECT a FROM MipaUserBundle:Users a";
