@@ -22,7 +22,7 @@ class UserController extends Controller
     public function indexAction(Request $request)
    {
 		$em = $this->getDoctrine()->getManager();
-		$dql   = "SELECT a FROM MipaUserBundle:Users a";
+		$dql   = "SELECT a FROM MipaUserBundle:User a";
 		$query = $em->createQuery($dql);
 
 		$paginator  = $this->get('knp_paginator');
