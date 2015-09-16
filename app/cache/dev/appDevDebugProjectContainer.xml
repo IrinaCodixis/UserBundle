@@ -37,7 +37,7 @@
     <parameter key="mailer_user">null</parameter>
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
-    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:sliding.html.twig</parameter>
+    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig</parameter>
     <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
     <parameter key="locale">en</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
@@ -1768,7 +1768,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>55f8178417b471.45661283</argument>
+            <argument>55f92c1c0bfbe4.06588478</argument>
           </service>
         </argument>
       </argument>
@@ -1891,7 +1891,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>55f8178417b471.45661283</argument>
+            <argument>55f92c1c0bfbe4.06588478</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2548,7 +2548,7 @@
       <tag name="knp_paginator.subscriber"/>
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
       <argument type="collection">
-        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:sliding.html.twig</argument>
+        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig</argument>
         <argument key="defaultSortableTemplate">KnpPaginatorBundle:Pagination:sortable_link.html.twig</argument>
         <argument key="defaultFiltrationTemplate">KnpPaginatorBundle:Pagination:filtration.html.twig</argument>
         <argument key="defaultPageRange">5</argument>
