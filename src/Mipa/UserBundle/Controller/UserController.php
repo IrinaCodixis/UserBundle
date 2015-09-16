@@ -29,7 +29,7 @@ class UserController extends Controller
 		$pagination = $paginator->paginate(
 			$query,
 			$request->query->getInt('page', 1)/*page number*/,
-			10 /*limit per page*/
+			7 /*limit per page*/
 		);
 		
 
