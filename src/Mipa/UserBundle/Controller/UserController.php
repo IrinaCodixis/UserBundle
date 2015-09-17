@@ -234,7 +234,7 @@ class UserController extends Controller
         ;
     }
 	
-	public function executeExcel(sfWebRequest $request)
+	public function executeExcel(Request $request)
 	{
 		// We're not going to be displaying any html, so no need to pass the data through the template
 		$this->setLayout(false);
