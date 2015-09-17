@@ -232,4 +232,66 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+	
+	public function executeExcel(sfWebRequest $request)
+	{
+		// We're not going to be displaying any html, so no need to pass the data through the template
+		$this->setLayout(false);
+	 
+		// Initialize the Excel document
+		$obj = new PHPExcel();
+		
+		// Set some meta data relative to the document
+		$obj->getProperties()->setCreator("Irina");
+		$obj->getProperties()->setTitle("List of Users");
+		$obj->getProperties()->setSubject("Users");
+		$obj->getProperties()->setDescription("File with the list of users");
+		$obj->getProperties()->setKeywords("user");
+		$obj->getProperties()->setCategory("from database");
+		
+		// Set the active excel sheet
+		$obj->setActiveSheetIndex(0);
+		$obj->getActiveSheet()->setTitle('users');
+		
+		// Get the data that we want to display in the excel sheet
+		$data = Doctrine_Core::getTable('user')->findAll();
+		
+		// Set relavant indexes
+		$nRows = $data->count();
+		$nColumns = 'A';
+		
+		// The keys of the $data[0]->toArray() array are the field names of the table
+		$fields = isset($data[0])? array_keys($data[0]->toArray()): array();
+		
+		// NOTE: $column = 'A'; $column + 1 == 1; $column++ == 'B'; True story.
+		// Get the final column index and create the excel column to table field map
+		$fieldsCount = count($fields);
+		$excelMap = array();
+		for($i = 0; $i < $fieldsCount; $i++){
+		  $excelMap[$nColumns] = $fields[$i];
+		  $nColumns++;
+		}
+		
+		// Set the first row as the table's field names
+		for($j = 'A'; $j < $nColumns; $j++){
+		  $obj->getActiveSheet()->setCellValue($j.'1', $excelMap[$j]);
+		}
+		
+		// Fill the rest of the excel sheet with data
+		$nRows += 1;
+		for($i = 2; $i <= $nRows; $i++){
+		  for($j = 'A'; $j < $nColumns; $j++){
+			$obj->getActiveSheet()->setCellValue($j.$i, $data[$i - 2][$excelMap[$j]]);
+		  }
+		}
+		
+		// Output the excel data to a file
+		$filePath = realpath('./ExcelFiles') . DIRECTORY_SEPARATOR . 'excel.xlsx';
+		$writer = PHPExcel_IOFactory::createWriter($obj, 'Excel2007');
+		$writer->save($filePath);
+		
+		// Redirect request to the outputed file
+		$this->getResponse()->setHttpHeader('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		$this->redirect('/ExcelFiles/excel.xlsx');
+	  }
 }
