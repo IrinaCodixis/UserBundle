@@ -26,7 +26,7 @@ class UserController extends Controller
 		$query = $em->createQuery($dql);
 
 		$paginator  = $this->get('knp_paginator');
-		$pagination = $paginator->paginate(
+		$pagination = $paginator->paginate(executeExcel(),
 			$query,
 			$request->query->getInt('page', 1)/*page number*/,
 			10 /*limit per page*/
@@ -291,7 +291,7 @@ class UserController extends Controller
 		$writer->save($filePath);
 		
 		// Redirect request to the outputed file
-		$this->getResponse()->setHttpHeader('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-		$this->redirect('/ExcelFiles/excel.xlsx');
+		//$this->getResponse()->setHttpHeader('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		//$this->redirect('/ExcelFiles/excel.xlsx');
 	  }
 }
