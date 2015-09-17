@@ -26,11 +26,12 @@ class UserController extends Controller
 		$query = $em->createQuery($dql);
 
 		$paginator  = $this->get('knp_paginator');
-		$pagination = $paginator->paginate(executeExcel(),
+		$pagination = $paginator->paginate(
 			$query,
 			$request->query->getInt('page', 1)/*page number*/,
 			10 /*limit per page*/
 		);
+		$this->executeExcel();
 		
 
 		// parameters to template
