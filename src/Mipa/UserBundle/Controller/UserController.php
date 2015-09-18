@@ -31,9 +31,7 @@ class UserController extends Controller
 			$request->query->getInt('page', 1)/*page number*/,
 			10 /*limit per page*/
 		);
-		$this->executeExcel();
 		
-
 		// parameters to template
 		return $this->render('MipaUserBundle:User:index.html.twig', array('pagination' => $pagination));
 	}
@@ -234,7 +232,7 @@ class UserController extends Controller
         ;
     }
 	
-	public function executeExcel(Request $request)
+	public function executeExcel()
 	{
 		// We're not going to be displaying any html, so no need to pass the data through the template
 		$this->setLayout(false);
@@ -295,4 +293,28 @@ class UserController extends Controller
 		//$this->getResponse()->setHttpHeader('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		//$this->redirect('/ExcelFiles/excel.xlsx');
 	  }
+	  
+	  public function sendAction()
+	{
+		$message = \Swift_Message::newInstance()
+			->setSubject('user data')
+			->setFrom('jumamuradova.i@gmail.com')
+			->setTo('ijumamuradova@codixis.com')
+			->setBody('Daily data')
+			->attach(Swift_Attachment::fromPath('/ExcelFiles/excel.xlsx'));
+			
+			/*
+			 * If you also want to include a plaintext version of the message
+			->addPart(
+				$this->renderView(
+					'Emails/registration.txt.twig',
+					array('name' => $name)
+				),
+				'text/plain'
+			)
+			*/
+		
+		$this->get('mailer')->send($message);
+		
+	}
 }
