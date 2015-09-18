@@ -19,9 +19,10 @@ class FtpCommand extends ContainerAwareCommand
     }
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-             // get the service container to pass to the closure
-			$container = $this->container;
-			$response = new StreamedResponse(function() use($container) {
+       
+        $container=$this->getApplication()->getKernel()->getContainer();
+      
+        $response = new StreamedResponse(function() use($container) {
 
             $em = $container->get('doctrine')->getManager();
 
@@ -45,7 +46,8 @@ class FtpCommand extends ContainerAwareCommand
         $response->headers->set('Content-Type', 'application/force-download');
         $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
 
-                
+       
+        
         $output->writeln("Files saved");
       
        //envoie ftp
