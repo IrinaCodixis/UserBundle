@@ -46,11 +46,11 @@ class FtpCommand extends ContainerAwareCommand
 
         $response->headers->set('Content-Type', 'application/force-download');
         $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
-
+		$output->writeln("Files saved");
 		return $response;
        
         
-        $output->writeln("Files saved");
+        
       
        //envoie ftp
         $params = $container->getParameter('user')['ftp'];
