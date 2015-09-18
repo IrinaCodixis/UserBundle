@@ -33,7 +33,7 @@ class FtpCommand extends ContainerAwareCommand
         //	return;
         //}
         //nom de la plateforme
-        $plateforme = $container->getParameter('deafi')['plateform'];
+        $plateforme = $container->getParameter('user')['plateform'];
         $options = array(
         		'id'=>null,
         		'name'=>null,
