@@ -42,7 +42,7 @@ class FtpCommand extends ContainerAwareCommand
         		'email'	=>null
         
         );
-        //$csv= $em->getRepository('MipaUserBundle:User')->createCSV($plateforme, $options);
+        $csv= $em->getRepository('ObtaoAcmeBundle:Jedi')->getExportQuery()->iterate();
         $file = "/tmp/rapport".$plateforme.".csv";
         $fp= fopen($file, "w");
         fwrite($fp,$csv);
