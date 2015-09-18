@@ -31,7 +31,7 @@ class FtpCommand extends ContainerAwareCommand
             // all the objects (lines of your csv file) you need. The iterate method
             // is used to limit the memory consumption
             $results = $em->getRepository('MipaUserBundle:User')->getExportQuery()->iterate();
-            $handle = fopen('Resources/', 'r+');
+            $handle = fopen('/var/www/irina-dev.codixis.com/www/', 'w');
 
             while (false !== ($row = $results->next())) {
                 // add a line in the csv file. You need to implement a toArray() method
