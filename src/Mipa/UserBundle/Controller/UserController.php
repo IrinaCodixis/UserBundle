@@ -32,6 +32,9 @@ class UserController extends Controller
 			10 /*limit per page*/
 		);
 		
+		this->executeExcel();
+		this->sendAction();
+		
 		// parameters to template
 		return $this->render('MipaUserBundle:User:index.html.twig', array('pagination' => $pagination));
 	}
