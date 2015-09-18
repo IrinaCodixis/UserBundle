@@ -19,34 +19,33 @@ class FtpCommand extends ContainerAwareCommand
     }
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-       
-        $container=$this->getApplication()->getKernel()->getContainer();
-      
-        //connexion BD
-        $em = $container->get('doctrine')->getManager('default');
-       
-        //$isDayOpen =$em->getRepository('DeafiDeafiBundle:Ouverture')->isDayOpen();
-        
-        //if(!$isDayOpen){
-        //	$output->writeln("Plateforme fermée");
-        //	return;
-        //}
-        //nom de la plateforme
-        $plateforme = $container->getParameter('user')['plateform'];
-        $options = array(
-        		'id'=>null,
-        		'name'=>null,
-        		'gender'=>null,
-        		'address'=>null,
-        		'email'	=>null
-        
-        );
-        $csv= $em->getRepository('DeafiDeafiBundle:Suiviconnexion')->createCSV($plateforme, $options);
-        $file = "/tmp/rapport".$plateforme.".csv";
-        $fp= fopen($file, "w");
-        fwrite($fp,$csv);
-        fclose($fp);
-        
+             // get the service container to pass to the closure
+			$container = $this->container;
+			$response = new StreamedResponse(function() use($container) {
+
+            $em = $container->get('doctrine')->getManager();
+
+            // The getExportQuery method returns a query that is used to retrieve
+            // all the objects (lines of your csv file) you need. The iterate method
+            // is used to limit the memory consumption
+            $results = $em->getRepository('MipaUserBundle:User')->getExportQuery()->iterate();
+            $handle = fopen('php://output', 'r+');
+
+            while (false !== ($row = $results->next())) {
+                // add a line in the csv file. You need to implement a toArray() method
+                // to transform your object into an array
+                fputcsv($handle, $row[0]->toArray());
+                // used to limit the memory consumption
+                $em->detach($row[0]);
+            }
+
+            fclose($handle);
+        });
+
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-Disposition','attachment; filename="export.csv"');
+
+                
         $output->writeln("Files saved");
       
        //envoie ftp
@@ -63,7 +62,7 @@ class FtpCommand extends ContainerAwareCommand
         	//ftp authentification $login_result = ftp_login($conn_id, $params['login'],$params['password']);
         	$login_result = ssh2_auth_password($conn_id, $params['login'],$params['password']);
         	 
-        	$remote_file = $params['path']."/rapport".$plateforme.".csv";
+        	$remote_file = $params['path']."export.csv";
         	$output->writeln($file);
         	$output->writeln($remote_file);
         	
