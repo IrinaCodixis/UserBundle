@@ -232,4 +232,11 @@ class UserController extends Controller
             ->getForm()
         ;
     }
+	
+	public function getExportQuery()
+    {
+        $qb = $this->createQueryBuilder('j');
+        
+        return $qb->getQuery();
+    }
 }
