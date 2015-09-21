@@ -250,7 +250,7 @@ class UserController extends Controller
         $response->setCallback(
             function () use ($results) {
 				$file = "php://output";
-				$fp= fopen($file, "w");
+				$fp= fopen($file, "r+");
                 //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
                     //array list fields you need to export
