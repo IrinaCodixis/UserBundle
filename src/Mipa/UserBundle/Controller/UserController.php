@@ -271,9 +271,9 @@ class UserController extends Controller
 				//fclose($fp);
             }
         );
-        $response->headers->set('Content-Type', 'text/csv');
-        $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
-		return $response;
-    }
-	
+        //$response->headers->set('Content-Type', 'text/csv');
+        //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+		//return $response;
+    return $this->redirect($this->generateUrl('mipa_user'));
+	}
 }
