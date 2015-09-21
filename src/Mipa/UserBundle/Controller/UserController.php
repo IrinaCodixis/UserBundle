@@ -249,8 +249,8 @@ class UserController extends Controller
         $response = new StreamedResponse();
         $response->setCallback(
             function () use ($results) {
-				$file = "php://output";
-				$fp= fopen($file, "r+");
+				//$file = "php://output";
+				$fp= fopen('php://output', 'r+');
                 //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
                     //array list fields you need to export
