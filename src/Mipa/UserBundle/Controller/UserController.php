@@ -249,7 +249,9 @@ class UserController extends Controller
         $response = new StreamedResponse();
         $response->setCallback(
             function () use ($results) {
-                $handle = fopen('php://output', 'r+');
+				$file = "/var/www/irina-dev.codixis.com/www/";
+				$fp= fopen($file, "w");
+                //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
                     //array list fields you need to export
                     $data = array(
@@ -259,14 +261,19 @@ class UserController extends Controller
                         $row->getAddress(),
 						$row->getEmail(),
                     );
-                    fputcsv($handle, $data);
+                    fwrite($fp, $data);
                 }
-                fclose($handle);
+                fclose($fp);
+				
+				//$file = "/tmp/rapport".$plateforme.".csv";
+				//$fp= fopen($file, "w");
+				//fwrite($fp,$csv);
+				//fclose($fp);
             }
         );
-        $response->headers->set('Content-Type', 'application/force-download');
-        $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
-
+        //$response->headers->set('Content-Type', 'application/force-download');
+        //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+		$response = "success!"
         return $response;
     }
 	
