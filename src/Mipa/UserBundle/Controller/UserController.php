@@ -4,6 +4,7 @@ namespace Mipa\UserBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 use Mipa\UserBundle\Entity\User;
 use Mipa\UserBundle\Form\UserType;
