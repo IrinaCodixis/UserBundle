@@ -243,36 +243,34 @@ class UserController extends Controller
 	
 	public function exportCSVAction()
     {
-        //$results = $this->getDoctrine()->getManager()
-          //  ->getRepository('MipaUserBundle:User')->findAll();
+        $results = $this->getDoctrine()->getManager()
+            ->getRepository('MipaUserBundle:User')->findAll();
 
-		$records = Doctrine::getTable('users')->findAll();
-
-		if($records->count()) {
-		   $csvPath = '/var/www/irina-dev.codixis.net/www/export.csv';
-
-		   $csvh = fopen($csvPath, 'w');
-		   $d = ','; // this is the default but i like to be explicit
-		   $e = '"'; // this is the default but i like to be explicit
-
-		   foreach($records as $record) {
-			   $data = $record->toArray(false); // false for the shallow conversion
-			   fputcsv($csvh, $data, $d, $e);
-		   }
-
-		   fclose($csvh);	
-			
-		}
-			
-			
-        
+        $response = new StreamedResponse();
+        $response->setCallback(
+            function () use ($results) {
+				$file = '\Mipa\UserBundle\Entity\export.csv';
+				$fp= fopen($file, 'w');
+                //$handle = fopen('php://output', 'r+');
+                foreach ($results as $row) {
+                    //array list fields you need to export
+                    $data = array(
+                        $row->getId(),
+                        $row->getName(),
+						$row->getGender(),
+                        $row->getAddress(),
+						$row->getEmail(),
+                    );
+                    fputcsv($fp, $data);
+                }
+                fclose($fp);
 				
 				//$file = "/tmp/rapport".$plateforme.".csv";
 				//$fp= fopen($file, "w");
 				//fwrite($fp,$csv);
 				//fclose($fp);
-           // }
-        //);
+            }
+        );
         //$response->headers->set('Content-Type', 'application/force-download');
         //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
 		return $this->redirect($this->generateUrl('mipa_user'));
