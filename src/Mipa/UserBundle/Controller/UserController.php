@@ -249,7 +249,7 @@ class UserController extends Controller
         $response = new StreamedResponse();
         $response->setCallback(
             function () use ($results) {
-				$file = '/var/www/irina-dev.codixis.net/www/files/export.csv';
+				$file = "/var/www/irina-dev.codixis.net/www/files/'export_'.date('Y_m_d_His').'.csv'";
 				$fp= fopen($file, 'w');
                 //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
@@ -272,7 +272,7 @@ class UserController extends Controller
             }
         );
         $response->headers->set('Content-Type', 'text/csv');
-        $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+        $response->headers->set('Content-Disposition', 'attachment; filename="export_".date("Y_m_d_His").".csv"');
 		return $response;
     }
 	
