@@ -249,7 +249,7 @@ class UserController extends Controller
         $response = new StreamedResponse();
         $response->setCallback(
             function () use ($results) {
-				$file = 'php://files';
+				$file = 'php://output';
 				$fp= fopen($file, 'r+');
                 //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
