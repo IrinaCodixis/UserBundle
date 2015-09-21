@@ -233,10 +233,40 @@ class UserController extends Controller
         ;
     }
 	
-	public function getExportQuery()
+	//public function getExportQuery()
+    //{
+    //    $qb = $this->createQueryBuilder('j');
+    //    
+    //    return $qb->getQuery();
+    //}
+	
+	public function exportCSVAction()
     {
-        $qb = $this->createQueryBuilder('j');
-        
-        return $qb->getQuery();
+        $results = $this->getDoctrine()->getManager()
+            ->getRepository('MipaUserBundle:User')->findAll();
+
+        $response = new StreamedResponse();
+        $response->setCallback(
+            function () use ($results) {
+                $handle = fopen('php://output', 'r+');
+                foreach ($results as $row) {
+                    //array list fields you need to export
+                    $data = array(
+                        $row->getId(),
+                        $row->getName(),
+						$row->getGender(),
+                        $row->getAddress(),
+						$row->getEmail(),
+                    );
+                    fputcsv($handle, $data);
+                }
+                fclose($handle);
+            }
+        );
+        $response->headers->set('Content-Type', 'application/force-download');
+        $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+
+        return $response;
     }
+	
 }

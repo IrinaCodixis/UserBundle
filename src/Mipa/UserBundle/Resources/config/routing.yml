@@ -9,3 +9,7 @@ mipa_user_mipa_sub:
 mipa_user_homepage:
     path:     /hello/{name}
     defaults: { _controller: MipaUserBundle:Default:index }
+
+mipa_user_export_csv:
+  path:     /export/csv
+  defaults: { _controller: MipaUserBundle:User:exportCSV }
