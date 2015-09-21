@@ -249,8 +249,8 @@ class UserController extends Controller
         $response = new StreamedResponse();
         $response->setCallback(
             function () use ($results) {
-				$file = '\Mipa\UserBundle\Entity\export.csv';
-				$fp= fopen($file, 'w');
+				$file = 'php://files';
+				$fp= fopen($file, 'r+');
                 //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
                     //array list fields you need to export
