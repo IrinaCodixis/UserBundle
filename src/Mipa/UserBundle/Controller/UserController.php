@@ -249,8 +249,8 @@ class UserController extends Controller
         $response = new StreamedResponse();
         $response->setCallback(
             function () use ($results) {
-				//$file = "php://output";
-				$fp= fopen('/var/www/irina-dev.codixis.net/www/export.csv', 'w');
+				$file = "/var/www/irina-dev.codixis.net/www/export.csv";
+				$fp= fopen($file, 'w');
                 //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
                     //array list fields you need to export
@@ -271,9 +271,9 @@ class UserController extends Controller
 				//fclose($fp);
             }
         );
-        $response->headers->set('Content-Type', 'application/force-download');
-        $response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
-		return $response;
+        //$response->headers->set('Content-Type', 'application/force-download');
+        //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+		return $this->redirect($this->generateUrl('mipa_user'));
     }
 	
 }
