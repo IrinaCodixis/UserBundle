@@ -273,7 +273,7 @@ class UserController extends Controller
         );
         //$response->headers->set('Content-Type', 'application/force-download');
         //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
-		$response = "success!"
+		$response = "success!";
         return $response;
     }
 	
