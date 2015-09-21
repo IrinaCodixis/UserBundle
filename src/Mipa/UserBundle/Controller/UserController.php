@@ -249,7 +249,7 @@ class UserController extends Controller
         $response = new StreamedResponse();
         $response->setCallback(
             function () use ($results) {
-				$file = '/var/www/irina-dev.codixis.net/www/files/export.csv';
+				$file = '/var/www/irina-dev.codixis.net/www/files/';
 				$fp= fopen($file, 'r+');
                 //$handle = fopen('php://output', 'r+');
                 foreach ($results as $row) {
