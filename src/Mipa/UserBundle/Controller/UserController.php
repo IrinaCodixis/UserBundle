@@ -261,7 +261,7 @@ class UserController extends Controller
                         $row->getAddress(),
 						$row->getEmail(),
                     );
-                    fwrite($fp, $data);
+                    fputcsv($fp, $data);
                 }
                 fclose($fp);
 				
