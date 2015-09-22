@@ -38,14 +38,14 @@ class FtpCommand extends ContainerAwareCommand
 				$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
 				$fp= fopen($file, 'w');
                 //$handle = fopen('php://output', 'r+');
-                foreach ($records as $row) {
+                foreach ($records as $record) {
                     //array list fields you need to export
                     $data = array(
-                        $row->getId(),
-                        $row->getName(),
-						$row->getGender(),
-                        $row->getAddress(),
-						$row->getEmail(),
+                        $record->getId(),
+                        $record->getName(),
+						$record->getGender(),
+                        $record->getAddress(),
+						$record->getEmail(),
                     );
                     fputcsv($fp, $data);
                 }
