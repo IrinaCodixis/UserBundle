@@ -21,14 +21,19 @@ class FtpCommand extends ContainerAwareCommand
     }
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $csv= $em->getRepository('MipaUserBundle:User')->exportCSVAction();
+        $container=$this->getApplication()->getKernel()->getContainer();
+      
+        //connexion BD
+        $em = $container->get('doctrine')->getManager('default');
+       
+       $csv= $em->getRepository('MipaUserBundle:User')->exportCSVAction();
          
 		if(isset($csv)){
 			$output->writeln("Files saved");
 		}
 		else{
 			$output->writeln("Failed to save file");
-		}
+		}     
         
       
        //envoie ftp
