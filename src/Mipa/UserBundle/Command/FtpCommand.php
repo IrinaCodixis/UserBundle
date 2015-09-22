@@ -32,7 +32,7 @@ class FtpCommand extends ContainerAwareCommand
       
         //connexion BD
         $em = $container->get('doctrine')->getManager('default');
-		$results=$em->getRepository('MipaUserBundle:User')->findAll();
+		$records=$em->getRepository('MipaUserBundle:User')->findAll();
 
         if($records->count()) {
 				$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
