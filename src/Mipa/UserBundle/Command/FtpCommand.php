@@ -32,35 +32,15 @@ class FtpCommand extends ContainerAwareCommand
       
         //connexion BD
         $em = $container->get('doctrine')->getManager('default');
-		$records=$em->getRepository('MipaUserBundle:User')->findAll();
-
-        if($records->count()) {
-				$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
-				$fp= fopen($file, 'w');
-                //$handle = fopen('php://output', 'r+');
-                foreach ($records as $record) {
-                    //array list fields you need to export
-                    $data = array(
-                        $record->getId(),
-                        $record->getName(),
-						$record->getGender(),
-                        $record->getAddress(),
-						$record->getEmail(),
-                    );
-                    fputcsv($fp, $data);
-                }
-                fclose($fp);
-				
-				//$file = "/tmp/rapport".$plateforme.".csv";
-				//$fp= fopen($file, "w");
-				//fwrite($fp,$csv);
-				//fclose($fp);
-            }
-        //);
-        //$response->headers->set('Content-Type', 'text/csv');
-        //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
-		//return $response;
-    //}    
+       
+       $csv= $this->exportCSVAction();
+         
+		if(isset($csv)){
+			$output->writeln("Files saved");
+		}
+		else{
+			$output->writeln("Failed to save file");
+		} 
         
       
        //envoie ftp
