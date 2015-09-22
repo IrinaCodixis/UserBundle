@@ -28,8 +28,11 @@ class FtpCommand extends ContainerAwareCommand
     }
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-      $records = $this->getDoctrine()->getManager()
-            ->getRepository('MipaUserBundle:User')->findAll();
+		$container=$this->getApplication()->getKernel()->getContainer();
+      
+        //connexion BD
+        $em = $container->get('doctrine')->getManager('default');
+		$results=$em->getRepository('MipaUserBundle:User')->findAll();
 
         if($records->count()) {
 				$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
