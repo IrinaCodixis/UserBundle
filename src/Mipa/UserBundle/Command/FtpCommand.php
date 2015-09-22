@@ -26,7 +26,7 @@ class FtpCommand extends ContainerAwareCommand
         //connexion BD
         $em = $container->get('doctrine')->getManager('default');
        
-       $csv= $em->exportCSVAction();
+       $csv= $container->exportCSVAction();
          
 		if(isset($csv)){
 			$output->writeln("Files saved");
