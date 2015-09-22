@@ -21,15 +21,22 @@ class FtpCommand extends ContainerAwareCommand
     }
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-      $records = Doctrine::getTable('users')->findAll();
+      $records = $this->getDoctrine()->getManager()
+            ->getRepository('MipaUserBundle:User')->findAll();
 
         if($records->count()) {
 				$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
 				$fp= fopen($file, 'w');
                 //$handle = fopen('php://output', 'r+');
-                foreach ($records as $record) {
+                foreach ($records as $row) {
                     //array list fields you need to export
-                    $data = $record->toArray(false);
+                    $data = array(
+                        $row->getId(),
+                        $row->getName(),
+						$row->getGender(),
+                        $row->getAddress(),
+						$row->getEmail(),
+                    );
                     fputcsv($fp, $data);
                 }
                 fclose($fp);
@@ -43,7 +50,7 @@ class FtpCommand extends ContainerAwareCommand
         //$response->headers->set('Content-Type', 'text/csv');
         //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
 		//return $response;
-       
+    //}    
         
       
        //envoie ftp
