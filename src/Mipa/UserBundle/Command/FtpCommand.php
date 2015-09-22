@@ -45,33 +45,23 @@ class FtpCommand extends ContainerAwareCommand
                 }
                 fclose($fp);
 				
-				//$file = "/tmp/rapport".$plateforme.".csv";
-				//$fp= fopen($file, "w");
-				//fwrite($fp,$csv);
-				//fclose($fp);
-            }
+			}
         );
-        //$response->headers->set('Content-Type', 'text/csv');
-        //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
-		return $response;
+        return $response;
     }
 	
     protected function configure()
     {
         $this
             ->setName('user:ftp')
-            ->setDescription('Saving the csv report in Temp');
+            ->setDescription('Save the csv report in Temp');
           //  ->addArgument('name', InputArgument::OPTIONAL, 'Qui voulez vous saluer??')
            // ->addOption('yell', null, InputOption::VALUE_NONE, 'Si définie, la tâche criera en majuscules')
         ;
     }
-    protected function execute(InputInterface $input, OutputInterface $output)
-    {
-		$container=$this->getApplication()->getKernel()->getContainer();
-      
-        //connexion BD
-        $em = $container->get('doctrine')->getManager('default');
-       
+    
+	protected function execute(InputInterface $input, OutputInterface $output)
+    {       
        $csv= $this->exportCSVAction();
          
 		if(isset($csv)){
@@ -81,36 +71,9 @@ class FtpCommand extends ContainerAwareCommand
 			$output->writeln("Failed to save file");
 		} 
         
-      
-       //envoie ftp
-        $params = $container->getParameter('user')['ftp'];
-        if(isset($params)){
-        	//ftp : $conn_id = ftp_connect($params['server']);
-        	//sftp
-        	$conn_id = ssh2_connect($params['server'], $params['port']);
-        	if($conn_id===false){
-        		$output->writeln("Connection failed");
-        		exit;
-        	}
-        	
-        	//ftp authentification $login_result = ftp_login($conn_id, $params['login'],$params['password']);
-        	$login_result = ssh2_auth_password($conn_id, $params['login'],$params['password']);
-        	 
-        	$remote_file = $params['path']."export.csv";
-        	$output->writeln($file);
-        	$output->writeln($remote_file);
-        	
-        	//ftp envoie fichier if (ftp_put($conn_id, $remote_file, $file, FTP_ASCII)) {
-        	//
-        	if (ssh2_scp_send($conn_id,  $file, $remote_file, 0644)) {
-        		$output->writeln("file transferred");
-        	} else {
-        		$output->writeln("Failed transfer");
-        	}
-        //	close the connection
-        	//ftp_close($conn_id);
-        }
+	}
+       
       
         
-    }
+    
 }
