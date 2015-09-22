@@ -40,7 +40,7 @@ class FtpCommand extends ContainerAwareCommand
 				//fwrite($fp,$csv);
 				//fclose($fp);
             }
-        );
+        //);
         //$response->headers->set('Content-Type', 'text/csv');
         //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
 		//return $response;
