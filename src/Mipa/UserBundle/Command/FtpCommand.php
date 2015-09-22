@@ -8,6 +8,14 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Mipa\UserBundle\Controller\UserController;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\StreamedResponse;
+
+use Mipa\UserBundle\Entity\User;
+use Mipa\UserBundle\Form\UserType;
+
 class FtpCommand extends ContainerAwareCommand
 {
     protected function configure()
