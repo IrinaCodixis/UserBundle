@@ -21,19 +21,30 @@ class FtpCommand extends ContainerAwareCommand
     }
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $container=$this->getApplication()->getKernel()->getContainer();
-      
-        //connexion BD
-        $em = $container->get('doctrine')->getManager('default');
-       
-       $csv= $em->getRepository('MipaUserBundle:User')->exportCSVAction();
-         
-		if(isset($csv)){
-			$output->writeln("Files saved");
-		}
-		else{
-			$output->writeln("Failed to save file");
-		}     
+      $records = $this->getDoctrine()->getManager()
+            ->getRepository('MipaUserBundle:User')->findAll();
+
+        if($records->count()) {
+				$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
+				$fp= fopen($file, 'w');
+                //$handle = fopen('php://output', 'r+');
+                foreach ($records as $record) {
+                    //array list fields you need to export
+                    $data = $record->toArray(false);
+                    fputcsv($fp, $data);
+                }
+                fclose($fp);
+				
+				//$file = "/tmp/rapport".$plateforme.".csv";
+				//$fp= fopen($file, "w");
+				//fwrite($fp,$csv);
+				//fclose($fp);
+            }
+        );
+        //$response->headers->set('Content-Type', 'text/csv');
+        //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+		//return $response;
+    }    
         
       
        //envoie ftp
