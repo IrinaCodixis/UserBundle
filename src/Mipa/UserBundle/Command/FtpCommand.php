@@ -44,7 +44,7 @@ class FtpCommand extends ContainerAwareCommand
         //$response->headers->set('Content-Type', 'text/csv');
         //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
 		//return $response;
-    }    
+       
         
       
        //envoie ftp
