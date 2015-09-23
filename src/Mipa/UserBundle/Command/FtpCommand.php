@@ -67,7 +67,7 @@ class FtpCommand extends ContainerAwareCommand
         //connexion BD
         $em = $container->get('doctrine')->getManager();
 		
-		$results = $em->getTable('users')->findAll();
+		$results = $em::getTable('users')->findAll();
        
         //nom de la plateforme
         
