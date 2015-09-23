@@ -168,7 +168,7 @@ class User
         return $this->subscription;
     }
 
-	public function exportCSV()
+	public function getCSV()
     {
         $results = $this->getDoctrine()->getManager()
             ->getRepository('MipaUserBundle:User')->findAll();
