@@ -62,29 +62,14 @@ class FtpCommand extends ContainerAwareCommand
     
 	protected function execute(InputInterface $input, OutputInterface $output)
     {       
-       $container=$this->getApplication()->getKernel()->getContainer();
-      
-        //connexion BD
-        $em = $container->get('doctrine')->getManager();
-		
-		$results = $em::getTable('users')->findAll();
-       
-        //nom de la plateforme
-        
-        if($results->count()) {
-        
-		$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
-		$fp= fopen($file, 'w');
-        foreach ($results as $recprd) {
-           $data = $record->toArray(false);
-        fputcsv($fp, $data); }
-        fclose($fp);
-        
-        $output->writeln("Fichier enregistre sur temp");
-        
-	
+       $csv= MipaUserBundle:UserController::exportCSVAction();
+         
+		if(isset($csv)){
+			$output->writeln("Files saved");
 		}
-	}
+		else{
+			$output->writeln("Failed to save file");
+		} 
 }
        //envoie ftp
 //        $params = $container->getParameter('user')['ftp'];
@@ -117,4 +102,4 @@ class FtpCommand extends ContainerAwareCommand
       
         
    // }
-//}
+}
