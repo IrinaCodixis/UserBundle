@@ -66,7 +66,7 @@ class FtpCommand extends ContainerAwareCommand
       
         //connexion BD
         $em = $container->get('doctrine')->getManager('default');
-       $csv= $em->getRepository('MipaUserBundle:User')->findByCSV($row);
+       $csv= $em->getRepository('MipaUserBundle:User')->findByCSV($results);
          
 		if(isset($csv)){
 			$output->writeln("Files saved");
