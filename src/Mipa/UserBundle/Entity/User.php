@@ -167,5 +167,36 @@ class User
     {
         return $this->subscription;
     }
+$results = $this->getDoctrine()->getManager()
+            ->getRepository('MipaUserBundle:User')->findAll();
 
+        $response = new StreamedResponse();
+        $response->setCallback(
+            function () use ($results) {
+				$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
+				$fp= fopen($file, 'w');
+                //$handle = fopen('php://output', 'r+');
+                foreach ($results as $row) {
+                    //array list fields you need to export
+                    $data = array(
+                        $row->getId(),
+                        $row->getName(),
+						$row->getGender(),
+                        $row->getAddress(),
+						$row->getEmail(),
+                    );
+                    fputcsv($fp, $data);
+                }
+                fclose($fp);
+				
+				//$file = "/tmp/rapport".$plateforme.".csv";
+				//$fp= fopen($file, "w");
+				//fwrite($fp,$csv);
+				//fclose($fp);
+            }
+        );
+        //$response->headers->set('Content-Type', 'text/csv');
+        //$response->headers->set('Content-Disposition', 'attachment; filename="export.csv"');
+		return $response;
+    }
 }
