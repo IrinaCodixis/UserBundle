@@ -62,19 +62,30 @@ class FtpCommand extends ContainerAwareCommand
     
 	protected function execute(InputInterface $input, OutputInterface $output)
     {  
-		$container=$this->getApplication()->getKernel()->getContainer();
+		 $container=$this->getApplication()->getKernel()->getContainer();
       
         //connexion BD
         $em = $container->get('doctrine')->getManager('default');
-       $csv= $em->getRepository('MipaUserBundle:User')->getCSV()->iterate();
-         
-		if(isset($csv)){
-			$output->writeln("Files saved");
-		}
-		else{
-			$output->writeln("Failed to save file");
-		} 
-}
+        $results = $em->getRepository('MipaUserBundle:User')->findAll();
+
+       $file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
+				$fp= fopen($file, 'w');
+                //$handle = fopen('php://output', 'r+');
+                foreach ($results as $row) {
+                    //array list fields you need to export
+                    $data = array(
+                        $row->getId(),
+                        $row->getName(),
+						$row->getGender(),
+                        $row->getAddress(),
+						$row->getEmail(),
+                    );
+                    fputcsv($fp, $data);
+                }
+                fclose($fp);
+				
+			}
+
        //envoie ftp
 //        $params = $container->getParameter('user')['ftp'];
 //        if(isset($params)){
