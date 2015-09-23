@@ -167,7 +167,10 @@ class User
     {
         return $this->subscription;
     }
-$results = $this->getDoctrine()->getManager()
+
+	public function exportCSVAction()
+    {
+        $results = $this->getDoctrine()->getManager()
             ->getRepository('MipaUserBundle:User')->findAll();
 
         $response = new StreamedResponse();
