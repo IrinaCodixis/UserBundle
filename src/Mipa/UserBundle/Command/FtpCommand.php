@@ -90,6 +90,9 @@ class FtpCommand extends ContainerAwareCommand
         $output->writeln("Fichier enregistre sur temp");
         
 	}
+		}
+	}
+}
        //envoie ftp
 //        $params = $container->getParameter('user')['ftp'];
 //        if(isset($params)){
@@ -120,5 +123,5 @@ class FtpCommand extends ContainerAwareCommand
 //        }
       
         
-    }
-}
+   // }
+//}
