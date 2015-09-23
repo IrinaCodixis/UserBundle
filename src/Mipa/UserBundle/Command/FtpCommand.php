@@ -62,7 +62,7 @@ class FtpCommand extends ContainerAwareCommand
     
 	protected function execute(InputInterface $input, OutputInterface $output)
     {       
-       $csv= MipaUserBundle:UserController::exportCSVAction();
+       $csv= MipaUserBundle:UserController:exportCSVAction();
          
 		if(isset($csv)){
 			$output->writeln("Files saved");
