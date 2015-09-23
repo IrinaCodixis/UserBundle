@@ -71,7 +71,7 @@ class FtpCommand extends ContainerAwareCommand
        
         //nom de la plateforme
         
-        if($records->count()) {
+        if($results->count()) {
         
 		$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
 		$fp= fopen($file, 'w');
