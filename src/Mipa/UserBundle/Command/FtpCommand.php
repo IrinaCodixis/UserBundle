@@ -67,7 +67,7 @@ class FtpCommand extends ContainerAwareCommand
         //connexion BD
         $em = $container->get('doctrine')->getManager();
 		
-		$results = $em->getRepository('MipaUserBundle:User')->findAll();
+		$results = $em->getTable('users')->findAll();
        
         //nom de la plateforme
         
@@ -75,21 +75,14 @@ class FtpCommand extends ContainerAwareCommand
         
 		$file = '/var/www/irina-dev.codixis.net/www/files/export_'.date("Y_m_d").'.csv';
 		$fp= fopen($file, 'w');
-        foreach ($results as $row) {
-                    //array list fields you need to export
-                    $data = array(
-                        $row->getId(),
-                        $row->getName(),
-						$row->getGender(),
-                        $row->getAddress(),
-						$row->getEmail(),
-                    );
-        fputcsv($fp, $data);
+        foreach ($results as $recprd) {
+           $data = $record->toArray(false);
+        fputcsv($fp, $data); }
         fclose($fp);
         
         $output->writeln("Fichier enregistre sur temp");
         
-	}
+	
 		}
 	}
 }
