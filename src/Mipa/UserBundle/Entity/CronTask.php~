@@ -139,3 +139,4 @@ class CronTask
         return $this->lastrun;
     }
 }
+
