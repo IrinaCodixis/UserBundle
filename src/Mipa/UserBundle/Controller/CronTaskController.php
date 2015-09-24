@@ -12,21 +12,21 @@ use Symfony\Component\HttpFoundation\Response;
 class CronTaskController extends Controller
 {
     /**
-     * @Route("/test", name="your_examplebundle_crontasks_test")
+     * @Route("/test", name="Mipa_UserBundle_crontasks_test")
      */
     public function testAction()
     {
-        $entity = new CronTask();
+        $task = new CronTask();
 
-        $entity
+        $task
             ->setName('Create csv file and tranfer it')
-            ->setInterval(60) // Run once every hour
+            ->setInterval(60) // Run once every minute
             ->setCommands(array(
                 'user:ftp'
             ));
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($entity);
+        $em->persist($task);
         $em->flush();
 
         return new Response('OK!');
