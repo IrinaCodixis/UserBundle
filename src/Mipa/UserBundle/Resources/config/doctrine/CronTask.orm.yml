@@ -10,7 +10,8 @@ Mipa\UserBundle\Entity\CronTask:
             type: string
             length: 225
         commands:
-            type: array
+            type: string
+            length: 225
         interval:
             type: integer
         lastrun:
