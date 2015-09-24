@@ -1,6 +1,6 @@
 Mipa\UserBundle\Entity\CronTask:
     type: entity
-    table: CronTask
+    table: crontask
     id:
         id:
             type: integer
