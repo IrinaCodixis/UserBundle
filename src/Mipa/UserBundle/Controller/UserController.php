@@ -244,7 +244,7 @@ class UserController extends Controller
 	public function exportCSVAction()
     {
         $results = $this->getDoctrine()->getManager()
-            ->getRepository('MipaUserBundle:User')->findAll();
+            ->getRepository('MipaUserBundle:CronTask')->findAll();
 
         $response = new StreamedResponse();
         $response->setCallback(
@@ -257,9 +257,9 @@ class UserController extends Controller
                     $data = array(
                         $row->getId(),
                         $row->getName(),
-						$row->getGender(),
-                        $row->getAddress(),
-						$row->getEmail(),
+						$row->getCommands(),
+                        $row->getInterval(),
+						$row->getLastrun(),
                     );
                     fputcsv($fp, $data);
                 }
