@@ -19,6 +19,7 @@
       <parameter key="AppBundle">AppBundle\AppBundle</parameter>
       <parameter key="MipaUserBundle">Mipa\UserBundle\MipaUserBundle</parameter>
       <parameter key="KnpPaginatorBundle">Knp\Bundle\PaginatorBundle\KnpPaginatorBundle</parameter>
+      <parameter key="LiuggioExcelBundle">Liuggio\ExcelBundle\LiuggioExcelBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -37,6 +38,17 @@
     <parameter key="mailer_user">null</parameter>
     <parameter key="mailer_password">null</parameter>
     <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
+    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig</parameter>
+    <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
+    <parameter key="user" type="collection">
+      <parameter key="ftp" type="collection">
+        <parameter key="server">irina-dev.codixis.net</parameter>
+        <parameter key="port">22</parameter>
+        <parameter key="login">root</parameter>
+        <parameter key="password">Jumbo1991</parameter>
+        <parameter key="path">/var/www/irina-dev.codixis.net/www/IN/</parameter>
+      </parameter>
+    </parameter>
     <parameter key="locale">en</parameter>
     <parameter key="controller_resolver.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerResolver</parameter>
     <parameter key="controller_name_converter.class">Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser</parameter>
@@ -540,10 +552,9 @@
     <parameter key="sensio_framework_extra.view.listener.class">Sensio\Bundle\FrameworkExtraBundle\EventListener\TemplateListener</parameter>
     <parameter key="knp_paginator.class">Knp\Component\Pager\Paginator</parameter>
     <parameter key="knp_paginator.helper.processor.class">Knp\Bundle\PaginatorBundle\Helper\Processor</parameter>
-    <parameter key="knp_paginator.template.pagination">KnpPaginatorBundle:Pagination:sliding.html.twig</parameter>
     <parameter key="knp_paginator.template.filtration">KnpPaginatorBundle:Pagination:filtration.html.twig</parameter>
-    <parameter key="knp_paginator.template.sortable">KnpPaginatorBundle:Pagination:sortable_link.html.twig</parameter>
     <parameter key="knp_paginator.page_range">5</parameter>
+    <parameter key="phpexcel.class">Liuggio\ExcelBundle\Factory</parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -1768,7 +1779,7 @@
       <argument type="collection">
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>55fa77717081f2.12579958</argument>
+            <argument>56029f9472d587.85067678</argument>
           </service>
         </argument>
       </argument>
@@ -1891,7 +1902,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>55fa77717081f2.12579958</argument>
+            <argument>56029f9472d587.85067678</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -2548,7 +2559,7 @@
       <tag name="knp_paginator.subscriber"/>
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
       <argument type="collection">
-        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:sliding.html.twig</argument>
+        <argument key="defaultPaginationTemplate">KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig</argument>
         <argument key="defaultSortableTemplate">KnpPaginatorBundle:Pagination:sortable_link.html.twig</argument>
         <argument key="defaultFiltrationTemplate">KnpPaginatorBundle:Pagination:filtration.html.twig</argument>
         <argument key="defaultPageRange">5</argument>
@@ -2562,6 +2573,7 @@
       <tag name="twig.extension"/>
       <argument type="service" id="knp_paginator.helper.processor"/>
     </service>
+    <service id="phpexcel" class="Liuggio\ExcelBundle\Factory"/>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig"/>
       <argument type="service" id="debug.stopwatch" on-invalid="ignore"/>

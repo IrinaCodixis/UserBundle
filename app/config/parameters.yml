@@ -10,3 +10,12 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
+    knp_paginator.template.pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
+    knp_paginator.template.sortable:   KnpPaginatorBundle:Pagination:sortable_link.html.twig
+    user:
+         ftp:
+           server: irina-dev.codixis.net
+           port: 22
+           login: root
+           password: Jumbo1991
+           path: /var/www/irina-dev.codixis.net/www/IN/

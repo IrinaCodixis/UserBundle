@@ -19,7 +19,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-fixtures-bundle": "^2.2",
         "knplabs/knp-paginator-bundle": "^2.4",
-        "liuggio/excelbundle": "^2.0"
+        "liuggio/excelbundle": "^2.0",
+        "ddeboer/data-import": "@stable",
+        "phpseclib/phpseclib": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
