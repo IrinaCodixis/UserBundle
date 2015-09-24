@@ -16,4 +16,4 @@ mipa_user_export_csv:
 
 mipa_user_cron:
   path:     /crontasks
-  defaults: { _controller: MipaUserBundle:CronTask:testAction }  
+  defaults: { _controller: MipaUserBundle:CronTask:test }  
