@@ -1,6 +1,6 @@
 mipa_user_mipa_cron:
     resource: "@MipaUserBundle/Resources/config/routing/crontask.yml"
-    prefix:   /mipa_cron
+    prefix:   /crontask
 
 mipa_user_mipa_user:
     resource: "@MipaUserBundle/Resources/config/routing/user.yml"
@@ -18,6 +18,4 @@ mipa_user_export_csv:
   path:     /export/csv
   defaults: { _controller: MipaUserBundle:User:exportCSV }
 
-mipa_user_cron:
-  path:     /crontasks
-  defaults: { _controller: MipaUserBundle:CronTask:test }  
+ 
