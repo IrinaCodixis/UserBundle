@@ -14,6 +14,7 @@ Mipa\UserBundle\Entity\CronTask:
             length: 225
         interval:
             type: integer
+            length: 11
         lastrun:
             type: datetime
             nullable: true
