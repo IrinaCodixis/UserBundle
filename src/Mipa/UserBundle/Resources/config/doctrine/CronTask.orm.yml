@@ -12,7 +12,7 @@ Mipa\UserBundle\Entity\CronTask:
         commands:
             type: string
             length: 225
-        interval:
+        time_period:
             type: integer
             length: 11
         lastrun:
