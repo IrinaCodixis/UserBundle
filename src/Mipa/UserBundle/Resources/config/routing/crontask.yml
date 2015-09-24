@@ -1,0 +1,30 @@
+mipa_cron:
+    path:     /
+    defaults: { _controller: "MipaUserBundle:CronTask:index" }
+
+mipa_cron_show:
+    path:     /{id}/show
+    defaults: { _controller: "MipaUserBundle:CronTask:show" }
+
+mipa_cron_new:
+    path:     /new
+    defaults: { _controller: "MipaUserBundle:CronTask:new" }
+
+mipa_cron_create:
+    path:     /create
+    defaults: { _controller: "MipaUserBundle:CronTask:create" }
+    methods:  POST
+
+mipa_cron_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "MipaUserBundle:CronTask:edit" }
+
+mipa_cron_update:
+    path:     /{id}/update
+    defaults: { _controller: "MipaUserBundle:CronTask:update" }
+    methods:  [POST, PUT]
+
+mipa_cron_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "MipaUserBundle:CronTask:delete" }
+    methods:  [POST, DELETE]
