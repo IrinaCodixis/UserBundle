@@ -20,7 +20,7 @@ class CronTaskController extends Controller
 
         $entity
             ->setName('Create csv file and tranfer it')
-            ->setInterval(86400) // Run once every hour
+            ->setInterval(60) // Run once every hour
             ->setCommands(array(
                 'user:ftp'
             ));
