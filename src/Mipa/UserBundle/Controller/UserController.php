@@ -22,6 +22,12 @@ class UserController extends Controller
      */
     public function indexAction(Request $request)
    {
+	   
+	   $session = $this->getRequest()->getSession();
+ 
+		// store an attribute for reuse during a later user request
+		$session->set('myname', 'Irina');
+	   
 		$em = $this->getDoctrine()->getManager();
 		$dql   = "SELECT a FROM MipaUserBundle:User a";
 		$query = $em->createQuery($dql);
