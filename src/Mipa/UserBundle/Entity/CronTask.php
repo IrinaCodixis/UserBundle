@@ -138,4 +138,33 @@ class CronTask
     {
         return $this->lastrun;
     }
+    /**
+     * @var integer
+     */
+    private $time_period;
+
+
+    /**
+     * Set timePeriod
+     *
+     * @param integer $timePeriod
+     *
+     * @return CronTask
+     */
+    public function setTimePeriod($timePeriod)
+    {
+        $this->time_period = $timePeriod;
+
+        return $this;
+    }
+
+    /**
+     * Get timePeriod
+     *
+     * @return integer
+     */
+    public function getTimePeriod()
+    {
+        return $this->time_period;
+    }
 }
