@@ -96,6 +96,7 @@ class UserController extends Controller
      */
     public function newAction()
     {
+		$session = $this->getRequest()->getSession();
         $entity = new User();
         $form   = $this->createCreateForm($entity);
 		$name = $session->get('myname');
