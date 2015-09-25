@@ -1,0 +1,20 @@
+Mipa\UserBundle\Entity\CronTask:
+    type: entity
+    table: CronTask
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            length: 225
+        commands:
+            type: string
+            length: 225
+        time_interv:
+            type: integer
+            length: 11
+        lastrun:
+            type: datetime
+            nullable: true
