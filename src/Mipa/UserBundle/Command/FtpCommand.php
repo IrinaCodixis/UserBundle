@@ -35,7 +35,7 @@ class FtpCommand extends ContainerAwareCommand
         //connexion BD
         $em = $container->get('doctrine')->getManager('default');
         $results = $em->getRepository('MipaUserBundle:User')->findAll();
-		$file = $this->getApplication()->getKernel()->getRootDir() . '/../www/files/export_'.date("Y_m_d").'.csv';
+		$file = $this->getApplication()->getKernel()->getRootDir() . '/../files/export_'.date("Y_m_d").'.csv';
 		$fp= fopen($file, 'w');
                
         foreach ($results as $row) {
