@@ -73,7 +73,7 @@ class EmailCommand extends ContainerAwareCommand
 			)
 			*/
 		
-		$this->getMailer()->send($message);
+		$this->container->get('mailer')->send($message);
 		
 	
       
