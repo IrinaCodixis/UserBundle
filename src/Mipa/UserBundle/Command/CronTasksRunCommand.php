@@ -28,7 +28,7 @@ class CronTasksRunCommand extends ContainerAwareCommand
 
         foreach ($crontasks as $crontask) {
             // Get the last run time of this task, and calculate when it should run next
-            $lastrun = $crontask->getLastRun() ? $crontask->getLastRun()->format('U') : 0;
+            $lastrun = $crontask->getLastrun() ? $crontask->getLastrun()->format('U') : 0;
             $nextrun = $lastrun + $crontask->getTimeInterv();
 
             // We must run this task if:
@@ -39,7 +39,7 @@ class CronTasksRunCommand extends ContainerAwareCommand
                 $output->writeln(sprintf('Running Cron Task <info>%s</info>', $crontask));
 
                 // Set $lastrun for this crontask
-                $crontask->setLastRun(new \DateTime());
+                $crontask->setLastrun(new \DateTime());
 
                 try {
                     $commands = $crontask->getCommands();
