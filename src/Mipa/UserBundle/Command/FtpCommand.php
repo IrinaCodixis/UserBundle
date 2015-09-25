@@ -67,7 +67,7 @@ class FtpCommand extends ContainerAwareCommand
         	//ftp authentification $login_result = ftp_login($conn_id, $params['login'],$params['password']);
         	$login_result = ssh2_auth_password($conn_id, $params['login'],$params['password']);
         	 
-        	$remote_file = $params['path'].'export_'.date("Y_m_d").'.csv';
+        	$remote_file = $params['path']/.'export_'.date("Y_m_d").'.csv';
         	$output->writeln($file);
 			$output->writeln($remote_file);
         	
