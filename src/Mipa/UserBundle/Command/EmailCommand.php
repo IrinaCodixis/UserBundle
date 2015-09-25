@@ -58,7 +58,7 @@ class EmailCommand extends ContainerAwareCommand
 		$message = \Swift_Message::newInstance()
 			->setSubject('user data')
 			->setFrom('ijumamuradova@codixis.com')
-			->setTo('jumamuradova.i@gmail.com')
+			->setTo('ijumamuradova@codixis.com')
 			->setBody('Daily data')
 			->attach(\Swift_Attachment::fromPath($file));
 			
