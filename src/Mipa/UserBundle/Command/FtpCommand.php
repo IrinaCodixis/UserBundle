@@ -67,13 +67,13 @@ class FtpCommand extends ContainerAwareCommand
         	//ftp authentification $login_result = ftp_login($conn_id, $params['login'],$params['password']);
         	$login_result = ssh2_auth_password($conn_id, $params['login'],$params['password']);
         	 
-        	$remote_file = $params['path'].'export_'.date("Y_m_d").'.csv';
+        	$remote_file = $params['path'].'/'.'export_'.date("Y_m_d").'.csv';
         	$output->writeln($file);
 			$output->writeln($remote_file);
         	
         	//ftp envoie fichier if (ftp_put($conn_id, $remote_file, $file, FTP_ASCII)) {
         	//
-        	if (ssh2_scp_send($conn_id, $file, "\"".$remote_file."\"", 0644)) {
+        	if (ssh2_scp_send($conn_id, $file, $remote_file, 0644)) {
         		$output->writeln("file transferred");
         	} else {
         		$output->writeln("Failed transfer");
