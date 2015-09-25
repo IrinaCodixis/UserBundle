@@ -34,6 +34,7 @@
               <li><a href="{{ path('mipa_user_new') }}">Add new guest</a></li>
               <li><a href="{{ path('mipa_sub') }}">Subscription list</a></li>
               <li><a href="#contact">Contact</a></li>
+			  <li>{{ app.session.get('myname').titleMeta }}</li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
