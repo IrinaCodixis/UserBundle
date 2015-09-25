@@ -10,7 +10,7 @@
           <th>{{ form_label(form.name) }}</th>
           <td>
             {{ form_errors(form.name) }}
-            {{ form_widget(form.name = $session->get('myname')) }}
+            {{ form_widget(form.name = session->get('myname')) }}
           </td>
         </tr>
         <tr>
