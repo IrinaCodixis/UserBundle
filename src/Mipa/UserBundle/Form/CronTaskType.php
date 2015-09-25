@@ -17,7 +17,7 @@ class CronTaskType extends AbstractType
         $builder
             ->add('name')
             ->add('commands')
-            ->add('interval')
+            ->add('time_interv')
             ->add('lastrun')
         ;
     }

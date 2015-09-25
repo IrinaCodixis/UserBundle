@@ -1,3 +1,7 @@
+mipa_user_cron_task:
+    resource: "@MipaUserBundle/Resources/config/routing/crontask.yml"
+    prefix:   /cron_task
+
 mipa_user_mipa_user:
     resource: "@MipaUserBundle/Resources/config/routing/user.yml"
     prefix:   /user
