@@ -54,12 +54,13 @@ class EmailCommand extends ContainerAwareCommand
 	
 
        //envoie ftp
+	   
 		$message = \Swift_Message::newInstance()
 			->setSubject('user data')
 			->setFrom('ijumamuradova@codixis.com')
 			->setTo('jumamuradova.i@gmail.com')
 			->setBody('Daily data')
-			->attach(Swift_Attachment::fromPath('export.csv'));
+			->attach(\Swift_Attachment::fromPath($file));
 			
 			/*
 			 * If you also want to include a plaintext version of the message
