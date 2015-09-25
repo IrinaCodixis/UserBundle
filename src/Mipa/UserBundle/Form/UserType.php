@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+use Mipa\UserBundle\Controller\UserController;
+
 class UserType extends AbstractType
 {
     /**
@@ -16,7 +18,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', $session->get('myname'))
+            ->add('name')
             ->add('gender')
             ->add('address')
             ->add('email')

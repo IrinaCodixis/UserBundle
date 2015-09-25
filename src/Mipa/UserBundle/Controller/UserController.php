@@ -98,10 +98,12 @@ class UserController extends Controller
     {
         $entity = new User();
         $form   = $this->createCreateForm($entity);
+		$name = $session->get('myname');
 
         return $this->render('MipaUserBundle:User:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form'   => $form->createView(), 
+			'name'   => $name
         ));
     }
 
