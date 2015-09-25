@@ -2,49 +2,15 @@
 
 
 {% block content %}
-  <h1>User</h1>
+    <h1>User creation</h1>
 
-    <table id="form">
-      <tbody>
-        <tr>
-          <th>{{ form_label(form.name) }}</th>
-          <td>
-            {{ form_errors(form.name) }}
-            {{ form_widget(form.name = session->get('myname')) }}
-          </td>
-        </tr>
-        <tr>
-          <th>{{ form_label(form.gender) }}</th>
-          <td>
-            {{ form_errors(form.gender) }}
-            {{ form_widget(form.gender) }}
-          </td>
-        </tr>
-        <tr>
-          <th>{{ form_label(form.address) }}</th>
-          <td>
-            {{ form_errors(form.address) }}
-            {{ form_widget(form.address) }}
-          </td>
-        </tr>
-        <tr>
-          <th>{{ form_label(form.email) }}</th>
-          <td>
-            {{ form_errors(form.email) }}
-            {{ form_widget(form.email) }}
-          </td>
-        </tr>
-        <tr>
-          <th>{{ form_label(form.subscription) }}</th>
-          <td>
-            {{ form_errors(form.subscription) }}
-            {{ form_widget(form.subscription) }}
-          </td>
-        </tr>
-        
-      </tbody>
-    </table>
- 
-    {{ form_rest(form) }}
-  </form>
+    {{ form(form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('mipa_user') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
 {% endblock %}
