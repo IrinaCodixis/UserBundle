@@ -3,7 +3,7 @@
 
 {% block content %}
   <h1>User</h1>
-  <form action="{{ path('mipa_user_create') }}" method="post" {{ form_enctype(form) }}>
+  
     <table id="form">
       <tfoot>
         <tr>
@@ -52,6 +52,6 @@
       </tbody>
     </table>
  
-    
+    {{ form_rest(form) }}
   </form>
 {% endblock %}
