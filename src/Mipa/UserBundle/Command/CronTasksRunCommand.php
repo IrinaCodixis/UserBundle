@@ -29,7 +29,7 @@ class CronTasksRunCommand extends ContainerAwareCommand
         foreach ($crontasks as $crontask) {
             // Get the last run time of this task, and calculate when it should run next
             $lastrun = $crontask->getLastRun() ? $crontask->getLastRun()->format('U') : 0;
-            $nextrun = $lastrun + $crontask->getInterval();
+            $nextrun = $lastrun + $crontask->getTimeInterv();
 
             // We must run this task if:
             // * time() is larger or equal to $nextrun
