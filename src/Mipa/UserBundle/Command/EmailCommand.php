@@ -15,7 +15,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Mipa\UserBundle\Entity\User;
 use Mipa\UserBundle\Form\UserType;
 
-class FtpCommand extends ContainerAwareCommand
+class EmailCommand extends ContainerAwareCommand
 {
 	
     protected function configure()
